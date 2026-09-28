@@ -102,6 +102,32 @@ object AirPlayCrypto {
         return if (outputLength == output.size) output else output.copyOf(outputLength)
     }
 
+    /**
+     * 单流复用的 AEAD：构造一次、每包只刷新 nonce/AAD，省掉每包 6-10 个引擎对象。
+     * 非线程安全——只能在所属流自己的收发线程上使用（音频/视频流各自单线程收包）。
+     */
+    class Aead(private val key: ByteArray, private val encrypting: Boolean) {
+        private val keyParameter = KeyParameter(key)
+        private val cipher = ChaCha20Poly1305()
+
+        fun open(nonce: ByteArray, ciphertextAndTag: ByteArray, aad: ByteArray = ByteArray(0)): ByteArray {
+            cipher.init(encrypting, AEADParameters(keyParameter, MAC_BITS, nonce, aad))
+            val output = ByteArray(cipher.getOutputSize(ciphertextAndTag.size))
+            val processed = cipher.processBytes(ciphertextAndTag, 0, ciphertextAndTag.size, output, 0)
+            val finalized = cipher.doFinal(output, processed)
+            val outputLength = processed + finalized
+            return if (outputLength == output.size) output else output.copyOf(outputLength)
+        }
+
+        fun seal(nonce: ByteArray, plaintext: ByteArray, aad: ByteArray = ByteArray(0)): ByteArray {
+            cipher.init(encrypting, AEADParameters(keyParameter, MAC_BITS, nonce, aad))
+            val output = ByteArray(cipher.getOutputSize(plaintext.size))
+            val length = cipher.processBytes(plaintext, 0, plaintext.size, output, 0)
+            cipher.doFinal(output, length)
+            return output
+        }
+    }
+
     /** 12-byte nonce: four zero bytes followed by an eight-byte little-endian counter. */
     fun nonce64(counter: Long): ByteArray {
         val nonce = ByteArray(NONCE_SIZE)

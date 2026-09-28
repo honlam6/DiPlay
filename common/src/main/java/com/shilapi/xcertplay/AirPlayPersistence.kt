@@ -498,8 +498,16 @@ object AirPlayPersistence {
         val privateKey = prefs.getString(KEY_IDENT_PRIVATE, null)
         val publicKey = prefs.getString(KEY_IDENT_PUBLIC, null)
         val pairingId = prefs.getString(KEY_PAIRING_ID, null)
-        if (privateKey != null && publicKey != null && pairingId != null) {
-            return AirPlayIdentity(privateKey.decodeHex(), publicKey.decodeHex(), pairingId)
+        val decodedPrivate = privateKey?.decodeHexOrNull()
+        val decodedPublic = publicKey?.decodeHexOrNull()
+        if (decodedPrivate != null && decodedPublic != null && pairingId != null) {
+            return AirPlayIdentity(decodedPrivate, decodedPublic, pairingId)
+        }
+        if (privateKey != null || publicKey != null) {
+            // 有值但解析失败：清掉坏值重新生成，避免每次启动都在 onCreate 崩溃。
+            prefs.edit()
+                .remove(KEY_IDENT_PRIVATE).remove(KEY_IDENT_PUBLIC).remove(KEY_PAIRING_ID)
+                .apply()
         }
         return AirPlayIdentity.generate().also { identity ->
             prefs.edit()
@@ -514,7 +522,10 @@ object AirPlayPersistence {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val store = PairingStore(onSave)
         for (identifier in prefs.getStringSet(KEY_PAIRING_IDS, emptySet()).orEmpty()) {
-            prefs.getString("pairing.$identifier", null)?.let { store.save(identifier, it.decodeHex()) }
+            prefs.getString("pairing.$identifier", null)
+                ?.decodeHexOrNull()
+                ?.let { store.save(identifier, it) }
+                ?: prefs.edit().remove("pairing.$identifier").apply()
         }
         return store
     }
@@ -593,6 +604,9 @@ object AirPlayPersistence {
             substring(index * 2, index * 2 + 2).toInt(16).toByte()
         }
     }
+
+    /** 损坏的 prefs 值返回 null 而不是抛异常，避免启动即死循环崩溃。 */
+    private fun String.decodeHexOrNull(): ByteArray? = runCatching { decodeHex() }.getOrNull()
 
     private fun safeAreaKey(widthPixels: Int, heightPixels: Int): String =
         "$SAFE_AREA_KEY_PREFIX${widthPixels}x$heightPixels"

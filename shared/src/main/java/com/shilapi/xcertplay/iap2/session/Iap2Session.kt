@@ -90,6 +90,7 @@ class Iap2Session private constructor(
     }
 
     private fun emitFrameTrace(direction: Iap2TraceDirection, frame: Iap2Frame) {
+        if (!com.shilapi.xcertplay.airplay.TraceGate.enabled) return
         try {
             emitTrace(Iap2FrameFormatter.format(direction, traceContext, frame))
         } catch (failure: Exception) {

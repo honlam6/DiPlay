@@ -218,7 +218,8 @@ class CarPlayController(
 
         override fun onServiceDisconnected(name: ComponentName) {
             vpnService = null
-            fail(IphoneUsbException.DeviceUnavailable("CarPlay VPN service disconnected"))
+            // 已主动解绑后的回调属于旧代际，不应推 Failed 打断新会话。
+            if (vpnBound) fail(IphoneUsbException.DeviceUnavailable("CarPlay VPN service disconnected"))
         }
     }
 
@@ -1842,16 +1843,21 @@ class CarPlayController(
     }
 
     private fun bindVpn() {
-        if (vpnBound) return
-        vpnBound = true
+        synchronized(this) {
+            if (vpnBound) return
+            vpnBound = true
+            // 每次重新 bind 都重建 latch：一次 bind 失败后旧 latch 永久为 0，
+            // 会让后续 awaitVpnService 立即返回 null，无线模式再也连不上。
+            vpnLatch = CountDownLatch(1)
+        }
         try {
             val intent = Intent(appContext, CarPlayVpnService::class.java)
             if (!appContext.bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)) {
-                vpnBound = false
+                synchronized(this) { vpnBound = false }
                 vpnLatch.countDown()
             }
         } catch (_: Throwable) {
-            vpnBound = false
+            synchronized(this) { vpnBound = false }
             vpnLatch.countDown()
         }
     }

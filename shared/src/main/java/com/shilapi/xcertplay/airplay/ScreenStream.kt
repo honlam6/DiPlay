@@ -29,6 +29,7 @@ class ScreenStream(private val key: ByteArray, private val onDiagnostic: (String
 
     private val closed = AtomicBoolean(false)
     private val frameCounter = AtomicLong(0)
+    private val aead = AirPlayCrypto.Aead(key, encrypting = false)
     private val firstFrameLogged = AtomicBoolean(false)
     private var server: ServerSocket? = null
     private var socket: Socket? = null
@@ -91,7 +92,7 @@ class ScreenStream(private val key: ByteArray, private val onDiagnostic: (String
         when (header[OPCODE_OFFSET].toInt() and 0xff) {
             OP_VIDEO_FRAME -> {
                 val payload = if (body.size >= ScreenCodec.TAG_SIZE) {
-                    ScreenCodec.decryptFrame(key, frameCounter.get(), header, body)
+                    ScreenCodec.decryptFrame(aead, frameCounter.get(), header, body)
                         .also { frameCounter.incrementAndGet() }
                 } else {
                     body
@@ -144,6 +145,11 @@ object ScreenCodec {
     fun decryptFrame(key: ByteArray, counter: Long, header: ByteArray, body: ByteArray): ByteArray =
         if (body.size < TAG_SIZE) body
         else AirPlayCrypto.chachaOpen(key, AirPlayCrypto.nonce64(counter), body, header)
+
+    /** 每流复用的解密入口：Aead 实例只能被所属视频流线程使用。 */
+    fun decryptFrame(aead: AirPlayCrypto.Aead, counter: Long, header: ByteArray, body: ByteArray): ByteArray =
+        if (body.size < TAG_SIZE) body
+        else aead.open(AirPlayCrypto.nonce64(counter), body, header)
 
     /**
      * Replaces each four-byte NAL length with an Annex B start code in place.

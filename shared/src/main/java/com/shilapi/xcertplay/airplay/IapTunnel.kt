@@ -120,6 +120,7 @@ class IapTunnel(
                 return
             }
             accepted.setSoLinger(true, 0)
+            accepted.tcpNoDelay = true
             socket = accepted
             readCounter.set(0)
             peerConnected.countDown()
@@ -184,7 +185,11 @@ class IapTunnel(
         var offset = 0
         while (buffer.size - offset >= PACKAGE_HEADER_LEN) {
             val size = readU32Be(buffer, offset)
-            if (size < PACKAGE_HEADER_LEN || size > MAX_PACKAGE) break
+            // 畸形包长度意味着流已错位：fail-fast 关闭会话触发重连，
+            // 静默 break 会让缓冲无限增长且隧道假死。
+            if (size < PACKAGE_HEADER_LEN || size > MAX_PACKAGE) {
+                throw java.io.IOException("Invalid APTransport package size $size")
+            }
             if (buffer.size - offset < size) break
             val messageType = readU32Be(buffer, offset + MESSAGE_TYPE_OFFSET)
             if (messageType == MSG_TYPE_COMM) {

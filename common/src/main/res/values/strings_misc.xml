@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MainActivity 开发诊断页 -->
+    <string name="misc_board_i2c_diagnostic">板载 I2C 诊断</string>
+    <string name="misc_linux_i2c_device">Linux I2C 设备</string>
+    <string name="misc_run_mfi_self_check">运行 MFi 自检</string>
+    <string name="misc_ch341_vid_pid_hint">CH341 需要针对具体部署配置 VID/PID。</string>
+    <string name="misc_i2c_native_library_unavailable">I2C 原生库不可用</string>
+    <string name="misc_status_idle">空闲</string>
+    <string name="misc_status_running">运行中…</string>
+    <string name="misc_status_failed">失败：%1$s</string>
+    <string name="misc_mfi_scan_interrupted">MFi 扫描已中断</string>
+    <string name="misc_found_none">未发现设备</string>
+    <string name="misc_mfi_chip_found">发现：0x%1$02X；设备版本：0x%2$02X；协议主版本（原始）：%3$s</string>
+
+    <!-- ImageCropActivity 图标裁剪页 -->
+    <string name="misc_crop_loading_image">正在加载图片</string>
+    <string name="misc_cancel">取消</string>
+    <string name="misc_crop_save_1_1">保存 1:1</string>
+    <string name="misc_crop_decode_failed">无法解析图片</string>
+    <string name="misc_crop_gesture_hint">拖动调整位置，双指缩放</string>
+    <string name="misc_crop_image_not_ready">图片尚未就绪</string>
+    <string name="misc_crop_encode_failed">无法编码图片</string>
+    <string name="misc_crop_save_failed">无法保存图片</string>
+
+    <!-- DiPlaySessionService 前台服务通知 -->
+    <string name="misc_channel_carplay_connection">CarPlay 连接</string>
+    <string name="misc_notification_connection_running">CarPlay 连接运行中</string>
+    <string name="misc_disconnect">断开连接</string>
+</resources>

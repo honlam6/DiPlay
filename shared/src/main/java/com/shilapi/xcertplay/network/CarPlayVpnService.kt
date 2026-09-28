@@ -3,7 +3,9 @@ package com.shilapi.xcertplay.network
 import android.content.Context
 import android.content.Intent
 import android.net.VpnService
+import android.net.wifi.WifiManager
 import android.os.Binder
+import android.os.Build
 import android.os.IBinder
 import android.os.ParcelFileDescriptor
 import android.util.Log
@@ -59,6 +61,7 @@ class CarPlayVpnService : VpnService() {
     private var bridge: Ipv6NcmBridge? = null
     private var tun: ParcelFileDescriptor? = null
     private var attachGeneration = 0
+    private var wifiLock: WifiManager.WifiLock? = null
 
     override fun onBind(intent: Intent?): IBinder = binder
 
@@ -139,6 +142,7 @@ class CarPlayVpnService : VpnService() {
                 generation,
                 AirPlayAttachment(bindAddress, config, identity, pairings, mfi, listener, media),
             )
+            acquireWifiLock()
             AttachResult.Started
         } catch (error: Exception) {
             releaseLocked()
@@ -278,6 +282,23 @@ class CarPlayVpnService : VpnService() {
         bridge = null
         tun?.close()
         tun = null
+        wifiLock?.let { if (it.isHeld) it.release() }
+        wifiLock = null
+    }
+
+    // 无线 CarPlay 的音频对 Wi-Fi 省电中断敏感：会话期间保持低延迟 Wi-Fi 锁，避免 radio gap 造成 underrun。
+    private fun acquireWifiLock() {
+        if (wifiLock?.isHeld == true) return
+        val wifi = applicationContext.getSystemService(Context.WIFI_SERVICE) as? WifiManager ?: return
+        val mode = if (Build.VERSION.SDK_INT >= 29) {
+            WifiManager.WIFI_MODE_FULL_LOW_LATENCY
+        } else {
+            @Suppress("DEPRECATION") WifiManager.WIFI_MODE_FULL_HIGH_PERF
+        }
+        wifiLock = wifi.createWifiLock(mode, "diplay-carplay").apply {
+            setReferenceCounted(false)
+            acquire()
+        }
     }
 
     companion object {

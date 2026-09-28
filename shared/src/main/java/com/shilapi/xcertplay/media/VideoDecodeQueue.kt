@@ -29,22 +29,36 @@ internal class VideoDecodeQueue(
     private val maxBytes: Int = 8 * 1024 * 1024,
 ) {
     private val jobs = LinkedBlockingQueue<VideoJob>()
+    private var frameCount = 0
+    private var frameBytes = 0L
 
     @Synchronized fun offer(job: VideoJob) {
         if (job is VideoJob.Frame) {
-            val frames = jobs.filterIsInstance<VideoJob.Frame>()
-            if (frames.size >= maxFrames || frames.sumOf { it.nalus.size.toLong() } + job.nalus.size > maxBytes) {
+            // 计数器代替每帧 filterIsInstance 全队列扫描（60fps 下每秒 60 次 O(60) + 临时 List）。
+            if (frameCount >= maxFrames || frameBytes + job.nalus.size > maxBytes) {
                 discardFrames()
                 jobs.offer(VideoJob.Resync)
             }
             // A single oversized frame is also a lost reference chain.
             if (job.nalus.size > maxBytes) return
+            frameCount++
+            frameBytes += job.nalus.size
         }
         jobs.offer(job)
     }
 
     @Synchronized fun discardFrames() {
-        jobs.removeIf { it is VideoJob.Frame || it is VideoJob.Resync }
+        jobs.removeIf {
+            when (it) {
+                is VideoJob.Frame -> {
+                    frameCount--
+                    frameBytes -= it.nalus.size
+                    true
+                }
+                is VideoJob.Resync -> true
+                else -> false
+            }
+        }
     }
 
     fun poll(timeoutMillis: Long): VideoJob? = jobs.poll(timeoutMillis, TimeUnit.MILLISECONDS)

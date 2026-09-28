@@ -196,6 +196,8 @@ private class VideoDecoder(
     private val referenceChain = VideoReferenceChain()
     private var lastKeyFrameRequestNs = 0L
     private val stats = VideoStats()
+    // 官方允许跨 dequeue 复用同一 BufferInfo；每帧新建会徒增 GC 压力。
+    private val outputInfo = MediaCodec.BufferInfo()
     private val thread = Thread(::run, "carplay-video").apply { isDaemon = true; start() }
 
     fun configure(codec: VideoCodec, codecData: ByteArray) {
@@ -410,7 +412,7 @@ private class VideoDecoder(
     }
 
     private fun drainOutput(codec: MediaCodec) {
-        val info = MediaCodec.BufferInfo()
+        val info = outputInfo
         while (running) {
             val index = codec.dequeueOutputBuffer(info, 0)
             when {
@@ -519,6 +521,7 @@ private class AudioRenderer(
     private var firstPcmLogged = false
     private val packetsReceived = AtomicInteger()
     private val packetsDropped = AtomicInteger()
+    private val outputInfo = MediaCodec.BufferInfo()
     private val lastArrivalNs = AtomicLong()
     private val maxArrivalGapMs = AtomicLong()
     private var maxWriteMs = 0L
@@ -780,7 +783,16 @@ private class AudioRenderer(
 
     private fun feedCodec(payload: ByteArray, presentationTimeUs: Long) {
         val codec = codec ?: return
-        val index = codec.dequeueInputBuffer(INPUT_TIMEOUT_US)
+        // 输入缓冲拿不到时先排空输出再短暂重试，而不是直接丢包：
+        // 一个 AAC 包 ≈ 23ms 音频，丢一包就是可闻的咔哒声。WRITE_BLOCKING 下
+        // AudioTrack 满时输出释放会滞后，这正是该路径被触发的常见场景。
+        var index = codec.dequeueInputBuffer(INPUT_TIMEOUT_US)
+        var retries = 0
+        while (index < 0 && retries < 2 && running) {
+            drainCodec(codec)
+            index = codec.dequeueInputBuffer(INPUT_TIMEOUT_US)
+            retries++
+        }
         if (index < 0) {
             inputDropped++
             if (inputDropped == 1) {
@@ -814,7 +826,7 @@ private class AudioRenderer(
     }
 
     private fun drainCodec(codec: MediaCodec) {
-        val info = MediaCodec.BufferInfo()
+        val info = outputInfo
         while (running) {
             val index = codec.dequeueOutputBuffer(info, 0)
             when {

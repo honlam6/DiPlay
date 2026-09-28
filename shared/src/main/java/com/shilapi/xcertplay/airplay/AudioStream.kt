@@ -46,6 +46,8 @@ class AudioStream(
     private val receivedPackets = AtomicInteger()
     private val decryptedPackets = AtomicInteger()
     private val authenticationFailures = AtomicInteger()
+    private val aead = AirPlayCrypto.Aead(key, encrypting = false)
+    private val nonce = ByteArray(12)
     private var dataSocket: DatagramSocket? = null
     private var controlSocket: DatagramSocket? = null
     private var dataThread: Thread? = null
@@ -113,11 +115,11 @@ class AudioStream(
                 val sealedEnd = wire.size - NONCE_LEN
                 val sealed = wire.copyOfRange(RTP_HEADER_LEN, sealedEnd)
                 val shortNonce = wire.copyOfRange(sealedEnd, wire.size)
-                val nonce = ByteArray(12).also { shortNonce.copyInto(it, 4) }
+                shortNonce.copyInto(nonce, 4)
                 val sample = readU32Be(wire, 4)
 
                 val payload = try {
-                    AirPlayCrypto.chachaOpen(key, nonce, sealed, aad)
+                    aead.open(nonce, sealed, aad)
                 } catch (error: Exception) {
                     val failureNumber = authenticationFailures.incrementAndGet()
                     if (failureNumber == 1) {

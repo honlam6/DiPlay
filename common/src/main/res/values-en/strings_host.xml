@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CarPlayHostActivity: connection waiting panel -->
+    <string name="host_app_name">DiPlay</string>
+    <string name="host_getting_ready">Getting CarPlay ready…</string>
+    <string name="host_hint_wireless">Keep your iPhone nearby with Bluetooth and Wi-Fi on.\nAllow CarPlay if your iPhone asks.</string>
+    <string name="host_hint_wired">Use a USB data cable and unlock your iPhone.\nAllow Trust and CarPlay if your iPhone asks.</string>
+    <string name="host_reset_wifi">Reset CarPlay Wi-Fi</string>
+    <string name="host_back_to_diplay">Back to DiPlay</string>
+    <string name="host_hint_three_finger">In CarPlay, swipe down with three fingers to open DiPlay settings.</string>
+
+    <!-- Settings menu: title and category headers -->
+    <string name="host_settings_title">CarPlay settings</string>
+    <string name="host_category_connection">Connection</string>
+    <string name="host_category_location">Location</string>
+    <string name="host_category_startup">Startup</string>
+    <string name="host_category_audio">Audio</string>
+    <string name="host_category_identity">Identity &amp; appearance</string>
+    <string name="host_category_display">Display &amp; video</string>
+    <string name="host_category_window">Window</string>
+    <string name="host_category_diagnostics">Diagnostics</string>
+    <string name="host_category_android9">Android 9 compatibility</string>
+
+    <!-- Connection settings -->
+    <string name="host_wireless_carplay">Wireless CarPlay</string>
+    <string name="host_cd_wireless_transport">Wireless CarPlay transport</string>
+    <string name="host_hotspot_status_title">Hotspot status</string>
+    <string name="host_auto_start">Auto-start on boot</string>
+    <string name="host_auto_start_desc">Start CarPlay automatically after device boot</string>
+    <string name="host_advanced_audio">Advanced audio channel mapping</string>
+    <string name="host_advanced_audio_desc">Route AAOS audio buses by CarPlay audio type</string>
+
+    <!-- Display & video settings -->
+    <string name="host_resolution">Resolution</string>
+    <string name="host_scale_min">0.3x</string>
+    <string name="host_scale_max">1.0x</string>
+    <string name="host_frame_rate">Frame rate</string>
+    <string name="host_fps_value">%1$d fps</string>
+    <string name="host_physical_basis">Physical size basis</string>
+    <string name="host_basis_width">Widest width</string>
+    <string name="host_basis_height">Longest height</string>
+    <string name="host_physical_length">Physical length</string>
+    <string name="host_mm_value">%1$d mm</string>
+    <string name="host_hevc">HEVC (H.265)</string>
+    <string name="host_cd_hevc_transport">HEVC H.265 video transport</string>
+    <string name="host_hevc_sw_decoder">HEVC software decoder</string>
+    <string name="host_cd_hevc_sw">Use software HEVC decoder</string>
+    <string name="host_android9_note">The following settings are unavailable and hidden on Android 9 (API 28):\n• Wi-Fi P2P (5 GHz) — LocalOnlyHotspot is used instead.\n• HEVC software decoder — hardware decoding is used instead.</string>
+
+    <!-- Menu buttons -->
+    <string name="host_save_reconnect">Save and reconnect</string>
+    <string name="host_exit_application">EXIT APPLICATION</string>
+    <string name="host_close">X</string>
+    <string name="host_cd_close_settings">Discard changes and exit settings</string>
+
+    <!-- MFi certificate target -->
+    <string name="host_mfi_target_title">MFI certificate &amp; signing target</string>
+    <string name="host_mfi_usb_ch341">USB/CH341</string>
+    <string name="host_mfi_i2c">I2C</string>
+    <string name="host_mfi_remote">Remote</string>
+    <string name="host_mfi_i2c_device">I2C device</string>
+    <string name="host_mfi_i2c_hint">Linux device path, for example /dev/i2c-1.</string>
+    <string name="host_mfi_server_address">Server address</string>
+    <string name="host_mfi_token">Token (optional)</string>
+    <string name="host_mfi_remote_hint">Address must start with http:// or https://. Token is optional and sent as an Authorization bearer token.</string>
+
+    <!-- Identity -->
+    <string name="host_manufacturer">Manufacturer</string>
+    <string name="host_model">Model</string>
+    <string name="host_oem_label">OEM label</string>
+
+    <!-- Location reporting -->
+    <string name="host_report_location">Report location to iPhone</string>
+    <string name="host_cd_report_location">Report Android location to the iPhone</string>
+    <string name="host_report_location_desc">Sends precise Android location as CarPlay GPS data when the iPhone requests it.</string>
+
+    <!-- Diagnostics -->
+    <string name="host_debug_logs">Debug logs</string>
+    <string name="host_debug_logs_desc">Show on-screen debug logs</string>
+
+    <!-- AirPlay icon -->
+    <string name="host_airplay_icon">AirPlay icon</string>
+    <string name="host_choose_image">Choose image</string>
+    <string name="host_default_icon">Default icon</string>
+    <string name="host_icon_custom">Custom 1:1 icon</string>
+    <string name="host_icon_placeholder">Default placeholder icon</string>
+
+    <!-- Driving side -->
+    <string name="host_driving_side">Driving side</string>
+    <string name="host_driving_left">Left-hand drive</string>
+    <string name="host_driving_right">Right-hand drive</string>
+
+    <!-- Fullscreen -->
+    <string name="host_fullscreen">Fullscreen</string>
+    <string name="host_hide_top_bar">Hide top bar</string>
+    <string name="host_hide_top_bar_desc">Hide the status bar</string>
+    <string name="host_hide_bottom_bar">Hide bottom bar</string>
+    <string name="host_hide_bottom_bar_desc">Hide the navigation bar</string>
+
+    <!-- Safe area -->
+    <string name="host_safe_area">Safe area</string>
+    <string name="host_set">Set</string>
+    <string name="host_reset">Reset</string>
+    <string name="host_draw_outside">Draw outside safe area</string>
+    <string name="host_draw_outside_desc">Allow CarPlay UI outside the safe area</string>
+    <string name="host_cancel">Cancel</string>
+    <string name="host_save">Save</string>
+    <string name="host_safe_area_waiting">Safe area: waiting for activity size</string>
+    <string name="host_safe_area_full">Safe area: full screen at %1$d x %2$d</string>
+    <string name="host_safe_area_rect">Safe area: %1$d x %2$d at (%3$d, %4$d) in %5$d x %6$d</string>
+
+    <!-- Wi-Fi session / manual hotspot -->
+    <string name="host_wifi_session">Wi-Fi session</string>
+    <string name="host_mode_wifi_p2p">Wi-Fi P2P (5 GHz)</string>
+    <string name="host_mode_local_only">LocalOnlyHotspot</string>
+    <string name="host_mode_manual">Manual hotspot</string>
+    <string name="host_hotspot_ssid">Hotspot SSID</string>
+    <string name="host_band">Band</string>
+    <string name="host_band_auto">Auto</string>
+    <string name="host_band_24">2.4 GHz</string>
+    <string name="host_band_5">5 GHz</string>
+    <string name="host_channel">Channel (0 = auto)</string>
+    <string name="host_hotspot_password">Hotspot password</string>
+    <string name="host_security">Security</string>
+    <string name="host_security_open">Open</string>
+    <string name="host_security_wpa2">WPA2</string>
+    <string name="host_security_wpa3_transition">WPA3 transition</string>
+    <string name="host_security_wpa3">WPA3</string>
+
+    <!-- Validation errors -->
+    <string name="host_err_i2c_required">I2C device path is required</string>
+    <string name="host_err_remote_addr_required">Remote server address is required</string>
+    <string name="host_err_remote_addr_scheme">Remote server address must start with http:// or https://</string>
+    <string name="host_err_i2c_nul">I2C device path contains U+0000</string>
+    <string name="host_err_remote_addr_nul">Remote server address contains U+0000</string>
+    <string name="host_err_remote_token_nul">Remote token contains U+0000</string>
+    <string name="host_err_ssid_required">Hotspot SSID is required</string>
+    <string name="host_err_ssid_too_long">Hotspot SSID must be at most 32 UTF-8 bytes</string>
+    <string name="host_err_ssid_nul">Hotspot SSID contains U+0000</string>
+    <string name="host_err_channel_range">Channel must be 0 or 1-196</string>
+    <string name="host_err_channel_band">Channel is not valid for the selected band</string>
+    <string name="host_err_password_nul">Hotspot password contains U+0000</string>
+    <string name="host_err_password_open">Password must be empty when security is Open</string>
+    <string name="host_err_password_wpa">WPA2/WPA3 password must be 8-63 characters</string>
+
+    <!-- Hotspot status block -->
+    <string name="host_state_starting">Starting</string>
+    <string name="host_state_ready">Ready</string>
+    <string name="host_state_waiting_paired">Waiting for paired iPhone</string>
+    <string name="host_state_connecting_bt">Connecting Bluetooth</string>
+    <string name="host_state_running">Running</string>
+    <string name="host_state_active">Active</string>
+    <string name="host_state_starting_airplay">Starting AirPlay service</string>
+    <string name="host_state_error">Error</string>
+    <string name="host_state_off">off</string>
+    <string name="host_state_stopped">stopped</string>
+    <string name="host_hs_prefix">Wireless hotspot: %1$s</string>
+    <string name="host_hs_ssid_line">\nSSID: %1$s</string>
+    <string name="host_hs_backend_line">\nBackend: %1$s</string>
+    <string name="host_hs_band_line">\nBand: %1$s</string>
+    <string name="host_hs_channel_line">\nChannel: %1$s</string>
+
+    <!-- Resolution debug preview -->
+    <string name="host_prev_resolution_waiting">Handshake resolution: waiting for display</string>
+    <string name="host_prev_resolution">Handshake resolution: %1$d x %2$d -> %3$d x %4$d</string>
+    <string name="host_prev_transport_h264">H.264</string>
+    <string name="host_prev_transport_hevc_sw">HEVC (H.265, software)</string>
+    <string name="host_prev_transport_hevc_hw">HEVC (H.265, hardware)</string>
+    <string name="host_prev_top_hidden">top hidden</string>
+    <string name="host_prev_top_shown">top shown</string>
+    <string name="host_prev_bottom_hidden">bottom hidden</string>
+    <string name="host_prev_bottom_shown">bottom shown</string>
+    <string name="host_prev_identity">Identity: %1$s / %2$s</string>
+    <string name="host_prev_oem">OEM label: %1$s</string>
+    <string name="host_prev_empty">(empty)</string>
+    <string name="host_prev_fps">Frame rate: %1$d fps</string>
+    <string name="host_prev_max">Detected maximum: %1$d x %2$d px</string>
+    <string name="host_prev_physical_ref">Physical reference: %1$s = %2$d mm</string>
+    <string name="host_prev_carplay_size">CarPlay physical size: %1$d x %2$d mm</string>
+    <string name="host_prev_driving_side">Driving side: %1$s</string>
+    <string name="host_prev_driving_left">left</string>
+    <string name="host_prev_driving_right">right</string>
+    <string name="host_prev_fullscreen">Fullscreen: %1$s</string>
+    <string name="host_prev_transport">Video transport: %1$s</string>
+    <string name="host_prev_location">Location reporting: %1$s</string>
+    <string name="host_state_enabled">enabled</string>
+    <string name="host_state_disabled">disabled</string>
+    <string name="host_prev_audio_mapping">Audio channel mapping: %1$s</string>
+    <string name="host_prev_audio_aaos">AAOS buses</string>
+    <string name="host_prev_audio_mobile">Mobile compatible</string>
+
+    <!-- Toast -->
+    <string name="host_toast_canvas_fallback">This head unit cannot use the smaller size at this resolution. Using Default.</string>
+
+    <!-- Connection stage texts set by this activity -->
+    <string name="host_stage_session_ended">CarPlay session ended; reconnecting</string>
+    <string name="host_stage_transport_error">Transport error; reconnecting</string>
+    <string name="host_stage_service_running">CarPlay service already running</string>
+    <string name="host_stage_session_running">CarPlay session already running</string>
+    <string name="host_stage_start_failed">Could not start CarPlay. Return to DiPlay and check app permissions.</string>
+
+    <!-- friendlyStage(): localized display text for English status messages -->
+    <string name="host_stage_iap2_tunnel_closed">Wireless iAP2 tunnel closed</string>
+    <string name="host_stage_handoff_timeout">Wireless CarPlay handoff timed out waiting for tunnel iAP2</string>
+    <string name="host_stage_iphone_usb_denied">iPhone USB permission was denied</string>
+    <string name="host_stage_iphone_usb_not_granted">iPhone USB permission was not granted; tap Reconnect iPhone to retry</string>
+    <string name="host_stage_control_closed">CarPlay control channel closed</string>
+    <string name="host_stage_ch341_denied">CH341 USB permission was denied</string>
+    <string name="host_stage_mfi_usb_not_granted">MFi USB permission was not granted; reconnect the CH341 to retry</string>
+    <string name="host_stage_turn_on_wifi">Turn on Wi-Fi in the head unit\'s settings to connect.</string>
+    <string name="host_stage_allow_location">Allow precise Location for DiPlay in the head unit\'s app permissions.</string>
+    <string name="host_stage_allow_nearby">Allow Nearby devices for DiPlay in the head unit\'s app permissions.</string>
+    <string name="host_stage_group_failed">The head unit couldn\'t start CarPlay Wi-Fi. Check Wi-Fi and close other projection apps. Retrying…</string>
+    <string name="host_stage_needs_reset">A previous Wi-Fi Direct connection is still running. Reset it to connect.</string>
+    <string name="host_stage_unavailable">Your iPhone isn\'t available. Unlock it and check Bluetooth.</string>
+    <string name="host_stage_unsupported">This head unit may not support wireless CarPlay. Try a USB connection.</string>
+    <string name="host_stage_permission">Allow the connection permission to continue</string>
+    <string name="host_stage_interrupted">Connection interrupted. Retrying…</string>
+    <string name="host_stage_connect_usb">Connect your iPhone with a USB cable</string>
+    <string name="host_stage_looking_paired">Looking for your paired iPhone…</string>
+    <string name="host_stage_connecting">Connecting to your iPhone…</string>
+    <string name="host_stage_reconnecting">Reconnecting to your iPhone…</string>
+    <string name="host_stage_opening">Opening CarPlay…</string>
+
+    <!-- CarPlayStatus.describe() -->
+    <string name="host_status_preparing_mfi">Preparing MFi authentication</string>
+    <string name="host_status_waiting_mfi">Waiting for MFi coprocessor</string>
+    <string name="host_status_requesting_mfi_perm">Requesting MFi USB permission</string>
+    <string name="host_status_mfi_ready">MFi authentication ready</string>
+    <string name="host_status_starting_hotspot">Starting wireless hotspot</string>
+    <string name="host_status_hotspot_ready">Hotspot ready: %1$s, %2$s, %3$s, channel %4$s</string>
+    <string name="host_status_wireless_control">Wireless CarPlay control running</string>
+    <string name="host_status_wireless_active">Wireless CarPlay active</string>
+    <string name="host_status_discovering_iphone">Discovering iPhone</string>
+    <string name="host_status_waiting_iphone_usb">Waiting for iPhone over USB</string>
+    <string name="host_status_requesting_iphone_perm">Requesting iPhone USB permission</string>
+    <string name="host_status_waiting_reenumeration">Waiting for iPhone re-enumeration</string>
+    <string name="host_status_selecting_config">Selecting CarPlay configuration</string>
+    <string name="host_status_opening_data_paths">Opening USB data paths</string>
+    <string name="host_status_pairing">Pairing with iPhone</string>
+    <string name="host_status_connecting_iap2">Connecting iAP2 control</string>
+    <string name="host_status_attaching_network">Attaching NCM/AirPlay network</string>
+    <string name="host_status_control_running">CarPlay control running</string>
+    <string name="host_status_control_ended">CarPlay control window ended</string>
+    <string name="host_status_failed">Failed: %1$s</string>
+    <string name="host_channel_auto">auto</string>
+</resources>

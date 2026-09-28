@@ -134,7 +134,7 @@ class AirPlaySession(
             "Content-Type: $PLIST_CONTENT_TYPE\r\n" +
             "Content-Length: ${body.size}\r\n" +
             "CSeq: $eventCseq\r\n\r\n"
-        trace("airplay event tx headers=$head bodyHex=${body.toHex()}")
+        if (TraceGate.enabled) trace("airplay event tx headers=$head bodyHex=${body.toHex()}")
         return try {
             val bytes = cipher.encrypt(head.toByteArray(Charsets.US_ASCII) + body)
             val output = socket.getOutputStream()
@@ -290,10 +290,12 @@ class AirPlaySession(
                         "airplay rx ${request.method} ${request.path} cseq=$cseq body=${request.body.size}",
                         showInDebugOverlay,
                     )
-                    trace(
-                        "airplay control rx headers=${request.headers} " +
-                            "bodyHex=${request.body.toHex()}",
-                    )
+                    if (TraceGate.enabled) {
+                        trace(
+                            "airplay control rx headers=${request.headers} " +
+                                "bodyHex=${request.body.toHex()}",
+                        )
+                    }
                     val response = try {
                         handle(request)
                     } catch (error: Exception) {
@@ -309,7 +311,7 @@ class AirPlaySession(
                         showInDebugOverlay,
                     )
                     val wire = RtspMessage.buildResponse(request, response)
-                    trace("airplay control tx wireHex=${wire.toHex()}")
+                    if (TraceGate.enabled) trace("airplay control tx wireHex=${wire.toHex()}")
                     output.write(cipher?.encrypt(wire) ?: wire)
                     if (cipher == null && pairVerify.controlKeys != null) {
                         val keys = pairVerify.controlKeys!!
@@ -411,6 +413,7 @@ class AirPlaySession(
     }
 
     private fun trace(message: String) {
+        if (!TraceGate.enabled) return
         try {
             listener.onDebugLog("TRACE $message")
         } catch (error: Exception) {
@@ -606,6 +609,8 @@ class AirPlaySession(
         try {
             val socket = server.accept()
             socket.setSoLinger(true, 0)
+            // 触控/暗色模式等高频小包：禁用 Nagle，避免最多 ~40ms 的合并延迟。
+            socket.tcpNoDelay = true
             debugLog("airplay event connection accepted from ${socket.remoteSocketAddress}")
             eventSocket = socket
             val shared = pairVerify.shared
@@ -668,11 +673,13 @@ class AirPlaySession(
                         "airplay event rx ${message.method} ${message.path} cseq=${message.headers["cseq"] ?: "-"} body=${message.body.size}",
                     )
                     val response = RtspMessage.buildResponse(message, RtspMessage.Response(status = 200))
-                    trace(
-                        "airplay event rx headers=${message.headers} " +
-                            "bodyHex=${message.body.toHex()}",
-                    )
-                    trace("airplay event tx wireHex=${response.toHex()}")
+                    if (TraceGate.enabled) {
+                        trace(
+                            "airplay event rx headers=${message.headers} " +
+                                "bodyHex=${message.body.toHex()}",
+                        )
+                        trace("airplay event tx wireHex=${response.toHex()}")
+                    }
                     synchronized(eventWriteLock) {
                         output.write(cipher.encrypt(response))
                         output.flush()

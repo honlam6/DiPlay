@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- DiPlayActivity 主界面（默认资源 = 简体中文；英文原文见 values-en/strings_home.xml） -->
+
+    <!-- 权限与初始化 -->
+    <string name="home_permission_nearby_devices">附近设备</string>
+    <string name="home_permission_nearby_devices_body">允许“附近设备”权限，DiPlay 才能连接已配对的 iPhone。</string>
+    <string name="home_error_local_setup">本地安装未能完成。请重新安装完整的 DiPlay beta APK 后重试。</string>
+
+    <!-- 顶部栏 -->
+    <string name="home_cd_carplay">CarPlay</string>
+    <string name="home_brand_doplay">DiPlay</string>
+    <string name="home_car_home">车机桌面</string>
+    <string name="home_back">返回</string>
+
+    <!-- 主页 -->
+    <string name="home_tagline_phone_drive">你的手机，你的旅程。</string>
+    <string name="home_tagline_familiar_drive">熟悉的感觉。</string>
+    <string name="home_tagline_subtitle">你的地图、音乐与对话，\nCarPlay 就在你的车机屏幕上。</string>
+    <string name="home_wireless_carplay_badge">无线 CarPlay</string>
+    <string name="home_status_ready">随时待命</string>
+    <string name="home_connect_phone">连接手机</string>
+    <string name="home_pair_hint">先将 iPhone 与车机蓝牙配对，再进行连接。\n请保持蓝牙和 Wi-Fi 开启。</string>
+    <string name="home_hotspot_off_hint">车机热点“%1$s”未开启。请先在车机设置中打开，再进行连接。</string>
+    <string name="home_open_car_hotspot_settings">打开车机热点设置</string>
+    <string name="home_choose_iphone">选择 iPhone</string>
+    <string name="home_disconnect">断开连接</string>
+    <string name="home_connect_usb">USB 连接</string>
+    <string name="home_usb_hint">将 iPhone 插入车机的 USB 数据口。\niPhone 询问时，请允许 CarPlay。</string>
+    <string name="home_settings">设置</string>
+    <string name="home_settings_teaser">让 DiPlay 更贴合你的车机。</string>
+    <string name="home_public_preview_badge">公开预览  ·  %1$s</string>
+
+    <!-- 设置页 -->
+    <string name="home_settings_title">你的旅程，由你定义。</string>
+    <string name="home_settings_apply_note">调整尺寸、分辨率、音乐缓冲或帧率后会重新连接 CarPlay。其他更改将在下次连接时生效。</string>
+    <string name="home_section_auto_connect">自动连接</string>
+    <string name="home_toggle_connect_on_open">打开 DiPlay 时连接</string>
+    <string name="home_toggle_connect_on_open_desc">使用上次的连接方式和所选 iPhone。</string>
+    <string name="home_toggle_open_after_start">车辆启动后自动打开</string>
+    <string name="home_toggle_open_after_start_desc">是否可用取决于车机的启动设置。</string>
+    <string name="home_choose_iphone_with_name">选择 iPhone · %1$s</string>
+    <string name="home_section_wireless">无线连接</string>
+    <string name="home_section_display">显示与性能</string>
+    <string name="home_resolution">分辨率</string>
+    <string name="home_res_native">原生</string>
+    <string name="home_res_80">80%% · 负担更轻</string>
+    <string name="home_res_60">60%% · 负担最轻</string>
+    <string name="home_music_buffer">音乐缓冲</string>
+    <string name="home_buffer_300">300 ms · 默认</string>
+    <string name="home_buffer_500">500 ms</string>
+    <string name="home_buffer_1000">1000 ms · 最稳定</string>
+    <string name="home_frame_rate">帧率</string>
+    <string name="home_fps_30">30 fps · 负担更轻</string>
+    <string name="home_fps_60">60 fps · 画面更流畅</string>
+    <string name="home_toggle_hevc">高效视频</string>
+    <string name="home_toggle_hevc_desc">使用 HEVC 编码。如需最广泛的车机兼容性，请保持关闭。</string>
+    <string name="home_toggle_rhd">右舵模式</string>
+    <string name="home_toggle_rhd_desc">让 CarPlay 的控件更靠近驾驶员一侧。</string>
+    <string name="home_toggle_fullscreen">全屏显示</string>
+    <string name="home_toggle_fullscreen_desc">CarPlay 打开时隐藏车机的系统栏。</string>
+    <string name="home_section_byd">BYD 导航</string>
+    <string name="home_toggle_byd_nav">在 HUD 和仪表盘上显示导航</string>
+    <string name="home_toggle_byd_nav_desc">在受支持的 BYD 屏幕上显示手机导航的箭头、距离和街道名称。车型兼容性各有差异。</string>
+    <string name="home_section_permissions">权限与连接帮助</string>
+    <string name="home_permissions_body">“附近设备”权限用于连接 iPhone；麦克风用于 Siri 和通话。较旧的 Android 版本进行无线设置时还需要定位权限。USB 模式可能会请求建立本地 VPN 连接。</string>
+    <string name="home_app_permissions">应用权限</string>
+    <string name="home_bluetooth_settings">蓝牙设置</string>
+    <string name="home_wireless_help">无线连接帮助</string>
+    <string name="home_section_about">关于与诊断</string>
+    <string name="home_about_doplay">关于 DiPlay</string>
+    <string name="home_saving_report">正在保存报告…</string>
+    <string name="home_save_report">保存诊断报告</string>
+    <string name="home_report_dest_downloads">"报告将保存到 Downloads/DiPlay。 "</string>
+    <string name="home_report_dest_choose">"请选择报告的保存位置。 "</string>
+    <string name="home_report_privacy">不会自动发送任何数据，协议数据包与凭据均不包含在内。</string>
+
+    <!-- 关于页 -->
+    <string name="home_about_subtitle">CarPlay，在你的车机安家。</string>
+    <string name="home_public_preview">公开预览 · %1$s</string>
+    <string name="home_about_intro">一款面向安卓车机的独立 CarPlay 接收器。有线与无线连接均在车机上运行，并采用本地认证。标准 iPhone 无需越狱、Mac、转接头或登录即可连接。\n\n本预览版使用实验性的配件身份。它与各款 iPhone 和车机的兼容性仍在测试中，并非 Apple 认证产品。</string>
+    <string name="home_about_opensource_title">得益于开源</string>
+    <string name="home_about_opensource">接收器基于 xcertplay，遵循 GPL-3.0 许可。DiPlay 的界面沿用 DiAuto 的设计，遵循 AGPL-3.0 许可。\n\n包含 AndroidX、Bouncy Castle、JmDNS 和 SLF4J。源代码与许可声明随本版本一同提供。\n\nCarPlay 与 CarPlay 图标归 Apple Inc. 所有。DiPlay 是一个独立项目。</string>
+
+    <!-- 对话框与提示 -->
+    <string name="home_dialog_hotspot_off_title">车机热点未开启</string>
+    <string name="home_dialog_hotspot_off_body">DiPlay 通过车机热点“%1$s”连接。请先在车机设置中开启热点，然后再连接。</string>
+    <string name="home_open_car_settings">打开车机设置</string>
+    <string name="home_connect">连接</string>
+    <string name="home_cancel">取消</string>
+    <string name="home_link_wifi_direct">Wi-Fi Direct · 默认</string>
+    <string name="home_link_car_hotspot">车机热点</string>
+    <string name="home_wireless_link_with_mode">无线连接 · %1$s</string>
+    <string name="home_wireless_link">无线连接</string>
+    <string name="home_apply_reconnect">应用并重新连接</string>
+    <string name="home_save">保存</string>
+    <string name="home_wifi_direct_desc">DiPlay 会为 iPhone 创建专属的 Wi-Fi Direct 网络。</string>
+    <string name="home_hotspot_name_with_value">热点名称 · %1$s</string>
+    <string name="home_car_hotspot_name">车机热点名称</string>
+    <string name="home_hotspot_password_with_value">热点密码 · %1$s</string>
+    <string name="home_hotspot_password_none">无</string>
+    <string name="home_car_hotspot_password">车机热点密码</string>
+    <string name="home_hotspot_hint">请先在车机设置中开启热点，并在此输入相同的名称和密码。iPhone 将加入该网络以使用 CarPlay。更改将在下次连接时生效。</string>
+    <string name="home_carplay_size">CarPlay 尺寸</string>
+    <string name="home_carplay_size_desc">调整 CarPlay 图标和文字的大小。应用尺寸后会重新连接 CarPlay。</string>
+    <string name="home_dialog_bt_title">请开启蓝牙</string>
+    <string name="home_dialog_bt_body">请先开启车机蓝牙，并与你的 iPhone 配对。</string>
+    <string name="home_open_bluetooth">打开蓝牙</string>
+    <string name="home_later">稍后</string>
+    <string name="home_dialog_pair_title">配对你的 iPhone</string>
+    <string name="home_dialog_pair_body">在 iPhone 上打开“设置 → 蓝牙”与车机配对，然后回到 DiPlay 选择“连接手机”。</string>
+    <string name="home_got_it">知道了</string>
+    <string name="home_dialog_choose_title">选择你的 iPhone</string>
+    <string name="home_paired_device">已配对设备</string>
+    <string name="home_pair_another">配对其他设备</string>
+    <string name="home_wireless_help_body">将 iPhone 与车机蓝牙配对，保持 Wi-Fi 开启，并在 iPhone 上允许 CarPlay。请关闭其他手机投屏应用。\n\n如果之前的投屏应用仍占用连接，请在下方重置 CarPlay Wi-Fi 后重新连接。车机自身的上网 Wi-Fi 不受影响。</string>
+    <string name="home_reset_wifi">重置 CarPlay Wi-Fi</string>
+    <string name="home_reset_wifi_title">重置 CarPlay Wi-Fi？</string>
+    <string name="home_reset_wifi_body">这将断开现有的 Wi-Fi Direct 连接，包括重新安装后残留的连接。请先关闭其他投屏应用。车机的上网 Wi-Fi 不受影响。</string>
+    <string name="home_reset_and_connect">重置并连接</string>
+    <string name="home_toast_no_wifi_direct">此车机不支持 Wi-Fi Direct。</string>
+    <string name="home_toast_wifi_direct_busy">Wi-Fi Direct 仍被占用。请关闭其他投屏应用后重试。</string>
+    <string name="home_toast_wifi_direct_reset_failed">无法重置 Wi-Fi Direct。请关闭其他投屏应用后重试。</string>
+    <string name="home_dialog_wireless_perm_title">无线权限</string>
+    <string name="home_dialog_wireless_perm_body">重置 CarPlay Wi-Fi 前，请允许“附近设备”权限；较旧的 Android 版本还需允许定位权限。</string>
+
+    <!-- 状态与连接 -->
+    <string name="home_status_setup_attention">设置需要处理</string>
+    <string name="home_status_connected">CarPlay 已连接</string>
+    <string name="home_status_connecting">正在连接你的 iPhone…</string>
+    <string name="home_status_ready_for">随时可连接 %1$s</string>
+    <string name="home_open_carplay">打开 CarPlay</string>
+
+    <!-- 诊断报告 -->
+    <string name="home_toast_no_save_location">此车机无法打开保存位置，请重试保存到 Downloads。</string>
+    <string name="home_toast_no_file_picker">此车机没有可用的文件选择器来保存报告。</string>
+    <string name="home_report_header">DiPlay %1$s · 私测诊断报告</string>
+    <string name="home_report_android">Android %1$s / API %2$d</string>
+    <string name="home_report_head_unit">车机：%1$s %2$s</string>
+    <string name="home_report_connection">连接方式：%1$s</string>
+    <string name="home_report_conn_wireless">无线</string>
+    <string name="home_report_conn_usb">USB</string>
+    <string name="home_report_auth">认证：本地实验性 beta 身份；无远程回退</string>
+    <string name="home_report_video_pref">已保存的视频偏好（可能与当前会话不同）：%1$s；%2$d fps</string>
+    <string name="home_report_size">CarPlay 尺寸：%1$s</string>
+    <string name="home_report_res_pref">已保存的分辨率偏好（可能与当前会话不同）：%1$d%%</string>
+    <string name="home_report_session">会话：%1$s</string>
+    <string name="home_report_session_active">活跃</string>
+    <string name="home_report_session_connecting">连接中</string>
+    <string name="home_report_session_stopped">已停止</string>
+    <string name="home_report_board">车机主板：%1$s；硬件：%2$s；系统构建：%3$s</string>
+    <string name="home_report_saved_title">诊断报告已保存</string>
+    <string name="home_report_saved_path">Downloads/DiPlay/%1$s</string>
+    <string name="home_report_saved_custom">报告已保存到你选择的位置。</string>
+    <string name="home_done">完成</string>
+    <string name="home_report_failed_title">无法保存报告</string>
+    <string name="home_report_failed_body">请检查存储是否可用，或选择其他保存位置。</string>
+    <string name="home_choose_location">选择位置</string>
+    <string name="home_close">关闭</string>
+    <string name="home_app_settings">应用设置</string>
+    <string name="home_toast_open_in_settings">请在车机的“设置”应用中打开此项。</string>
+
+    <!-- 热点校验错误（显示点映射 shared 模块返回的英文提示） -->
+    <string name="home_err_hotspot_name_required">请输入车机热点名称</string>
+    <string name="home_err_hotspot_name_too_long">热点名称最长 32 字节</string>
+    <string name="home_err_hotspot_invalid_char">名称或密码包含无效字符</string>
+    <string name="home_err_hotspot_password_length">热点密码需 8–63 个字符</string>
+
+    <!-- CarPlay 尺寸枚举标签（显示点映射） -->
+    <string name="home_size_large">大</string>
+    <string name="home_size_medium">中</string>
+    <string name="home_size_small">小</string>
+</resources>
