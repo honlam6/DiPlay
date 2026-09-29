@@ -43,8 +43,8 @@ data class AirPlayConfig(
     val hevc: Boolean = false,
     val disableAudioOutput: Boolean = false,
     val microphone: Boolean = false,
-    val manufacturer: String = "xcertplay",
-    val model: String = "xcertplay",
-    val oemLabel: String = "xcertplay",
+    val manufacturer: String = "50play",
+    val model: String = "50play",
+    val oemLabel: String = "Baojun",
     val icons: List<AirPlayIcon> = emptyList(),
 )

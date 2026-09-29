@@ -23,7 +23,7 @@
     <string name="misc_crop_encode_failed">Could not encode image</string>
     <string name="misc_crop_save_failed">Could not save image</string>
 
-    <!-- DiPlaySessionService foreground notification -->
+    <!-- 50playSessionService foreground notification -->
     <string name="misc_channel_carplay_connection">CarPlay connection</string>
     <string name="misc_notification_connection_running">CarPlay connection running</string>
     <string name="misc_disconnect">Disconnect</string>

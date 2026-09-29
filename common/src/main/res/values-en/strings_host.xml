@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- CarPlayHostActivity: connection waiting panel -->
-    <string name="host_app_name">DiPlay</string>
+    <string name="host_app_name">50play</string>
     <string name="host_getting_ready">Getting CarPlay ready…</string>
     <string name="host_hint_wireless">Keep your iPhone nearby with Bluetooth and Wi-Fi on.\nAllow CarPlay if your iPhone asks.</string>
     <string name="host_hint_wired">Use a USB data cable and unlock your iPhone.\nAllow Trust and CarPlay if your iPhone asks.</string>
     <string name="host_reset_wifi">Reset CarPlay Wi-Fi</string>
-    <string name="host_back_to_diplay">Back to DiPlay</string>
-    <string name="host_hint_three_finger">In CarPlay, swipe down with three fingers to open DiPlay settings.</string>
+    <string name="host_back_to_diplay">Back to 50play</string>
+    <string name="host_hint_three_finger">In CarPlay, swipe down with three fingers to open 50play settings.</string>
 
     <!-- Settings menu: title and category headers -->
     <string name="host_settings_title">CarPlay settings</string>
@@ -197,7 +197,7 @@
     <string name="host_stage_transport_error">Transport error; reconnecting</string>
     <string name="host_stage_service_running">CarPlay service already running</string>
     <string name="host_stage_session_running">CarPlay session already running</string>
-    <string name="host_stage_start_failed">Could not start CarPlay. Return to DiPlay and check app permissions.</string>
+    <string name="host_stage_start_failed">Could not start CarPlay. Return to 50play and check app permissions.</string>
 
     <!-- friendlyStage(): localized display text for English status messages -->
     <string name="host_stage_iap2_tunnel_closed">Wireless iAP2 tunnel closed</string>
@@ -208,8 +208,8 @@
     <string name="host_stage_ch341_denied">CH341 USB permission was denied</string>
     <string name="host_stage_mfi_usb_not_granted">MFi USB permission was not granted; reconnect the CH341 to retry</string>
     <string name="host_stage_turn_on_wifi">Turn on Wi-Fi in the head unit\'s settings to connect.</string>
-    <string name="host_stage_allow_location">Allow precise Location for DiPlay in the head unit\'s app permissions.</string>
-    <string name="host_stage_allow_nearby">Allow Nearby devices for DiPlay in the head unit\'s app permissions.</string>
+    <string name="host_stage_allow_location">Allow precise Location for 50play in the head unit\'s app permissions.</string>
+    <string name="host_stage_allow_nearby">Allow Nearby devices for 50play in the head unit\'s app permissions.</string>
     <string name="host_stage_group_failed">The head unit couldn\'t start CarPlay Wi-Fi. Check Wi-Fi and close other projection apps. Retrying…</string>
     <string name="host_stage_needs_reset">A previous Wi-Fi Direct connection is still running. Reset it to connect.</string>
     <string name="host_stage_unavailable">Your iPhone isn\'t available. Unlock it and check Bluetooth.</string>

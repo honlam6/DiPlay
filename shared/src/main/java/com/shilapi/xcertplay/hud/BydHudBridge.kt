@@ -41,6 +41,8 @@ internal object BydHudBridge {
     private var showing = false
     private var lastSendResult: Int? = null
     private var icons: Map<Int, ByteArray>? = null
+    private var bindFailures = 0
+    private var nextBindAtMillis = 0L
 
     // The gateway pings registered callbacks and drops registrations that do not answer like an AIDL stub.
     private val callback = object : Binder() {
@@ -104,7 +106,10 @@ internal object BydHudBridge {
     }
 
     private fun tick() = synchronized(lock) {
-        if (binder == null && !binding) bindLocked()
+        // The gateway may simply not be there (non-BYD unit) or not be up yet. Backing off keeps
+        // this loop from re-binding forever on a low-spec SoC, where it burns CPU and floods
+        // logcat every REPEAT_MILLIS (see docs/SGMW-LINGOS-COMPAT.md).
+        if (binder == null && !binding && android.os.SystemClock.elapsedRealtime() >= nextBindAtMillis) bindLocked()
         sendCurrentLocked()
     }
 
@@ -169,7 +174,20 @@ internal object BydHudBridge {
                 type = appContext.packageName
             }
             binding = appContext.bindService(intent, connection, Context.BIND_AUTO_CREATE)
-            Log.i(TAG, "bindService=$binding")
+            if (binding) {
+                bindFailures = 0
+                Log.i(TAG, "bindService=true")
+            } else {
+                // No such service on this unit: back off instead of retrying every
+                // REPEAT_MILLIS forever. The last delay repeats, so a gateway that appears
+                // later is still picked up without hammering the system in the meantime.
+                bindFailures++
+                val delay = BIND_BACKOFF_MILLIS[minOf(bindFailures - 1, BIND_BACKOFF_MILLIS.lastIndex)]
+                nextBindAtMillis = android.os.SystemClock.elapsedRealtime() + delay
+                if (bindFailures <= MAX_LOGGED_BIND_FAILURES) {
+                    Log.i(TAG, "bindService=false (retry in ${delay}ms)")
+                }
+            }
         } catch (error: Throwable) {
             binding = false
             Log.w(TAG, "cannot bind SOME/IP service", error)
@@ -256,4 +274,8 @@ internal object BydHudBridge {
         showing = false
         guidanceSentLogged = false
     }
+
+    /** Retry delays after a failed bind, in ms; the last value repeats. */
+    private val BIND_BACKOFF_MILLIS = longArrayOf(1_000, 5_000, 30_000, 120_000)
+    private const val MAX_LOGGED_BIND_FAILURES = 3
 }

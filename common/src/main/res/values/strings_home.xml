@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- DiPlayActivity 主界面（默认资源 = 简体中文；英文原文见 values-en/strings_home.xml） -->
+    <!-- 50playActivity 主界面（默认资源 = 简体中文；英文原文见 values-en/strings_home.xml） -->
 
     <!-- 权限与初始化 -->
     <string name="home_permission_nearby_devices">附近设备</string>
-    <string name="home_permission_nearby_devices_body">允许“附近设备”权限，DiPlay 才能连接已配对的 iPhone。</string>
-    <string name="home_error_local_setup">本地安装未能完成。请重新安装完整的 DiPlay beta APK 后重试。</string>
+    <string name="home_permission_nearby_devices_body">允许“附近设备”权限，50play 才能连接已配对的 iPhone。</string>
+    <string name="home_error_local_setup">本地安装未能完成。请重新安装完整的 50play beta APK 后重试。</string>
 
     <!-- 顶部栏 -->
     <string name="home_cd_carplay">CarPlay</string>
-    <string name="home_brand_doplay">DiPlay</string>
+    <string name="home_brand_doplay">50play</string>
     <string name="home_car_home">车机桌面</string>
     <string name="home_back">返回</string>
 
@@ -28,14 +28,14 @@
     <string name="home_connect_usb">USB 连接</string>
     <string name="home_usb_hint">将 iPhone 插入车机的 USB 数据口。\niPhone 询问时，请允许 CarPlay。</string>
     <string name="home_settings">设置</string>
-    <string name="home_settings_teaser">让 DiPlay 更贴合你的车机。</string>
+    <string name="home_settings_teaser">让 50play 更贴合你的车机。</string>
     <string name="home_public_preview_badge">公开预览  ·  %1$s</string>
 
     <!-- 设置页 -->
     <string name="home_settings_title">你的旅程，由你定义。</string>
     <string name="home_settings_apply_note">调整尺寸、分辨率、音乐缓冲或帧率后会重新连接 CarPlay。其他更改将在下次连接时生效。</string>
     <string name="home_section_auto_connect">自动连接</string>
-    <string name="home_toggle_connect_on_open">打开 DiPlay 时连接</string>
+    <string name="home_toggle_connect_on_open">打开 50play 时连接</string>
     <string name="home_toggle_connect_on_open_desc">使用上次的连接方式和所选 iPhone。</string>
     <string name="home_toggle_open_after_start">车辆启动后自动打开</string>
     <string name="home_toggle_open_after_start_desc">是否可用取决于车机的启动设置。</string>
@@ -68,10 +68,10 @@
     <string name="home_bluetooth_settings">蓝牙设置</string>
     <string name="home_wireless_help">无线连接帮助</string>
     <string name="home_section_about">关于与诊断</string>
-    <string name="home_about_doplay">关于 DiPlay</string>
+    <string name="home_about_doplay">关于 50play</string>
     <string name="home_saving_report">正在保存报告…</string>
     <string name="home_save_report">保存诊断报告</string>
-    <string name="home_report_dest_downloads">"报告将保存到 Downloads/DiPlay。 "</string>
+    <string name="home_report_dest_downloads">"报告将保存到 Downloads/50play。 "</string>
     <string name="home_report_dest_choose">"请选择报告的保存位置。 "</string>
     <string name="home_report_privacy">不会自动发送任何数据，协议数据包与凭据均不包含在内。</string>
 
@@ -80,11 +80,11 @@
     <string name="home_public_preview">公开预览 · %1$s</string>
     <string name="home_about_intro">一款面向安卓车机的独立 CarPlay 接收器。有线与无线连接均在车机上运行，并采用本地认证。标准 iPhone 无需越狱、Mac、转接头或登录即可连接。\n\n本预览版使用实验性的配件身份。它与各款 iPhone 和车机的兼容性仍在测试中，并非 Apple 认证产品。</string>
     <string name="home_about_opensource_title">得益于开源</string>
-    <string name="home_about_opensource">接收器基于 xcertplay，遵循 GPL-3.0 许可。DiPlay 的界面沿用 DiAuto 的设计，遵循 AGPL-3.0 许可。\n\n包含 AndroidX、Bouncy Castle、JmDNS 和 SLF4J。源代码与许可声明随本版本一同提供。\n\nCarPlay 与 CarPlay 图标归 Apple Inc. 所有。DiPlay 是一个独立项目。</string>
+    <string name="home_about_opensource">接收器基于 xcertplay，遵循 GPL-3.0 许可。50play 的界面沿用 DiAuto 的设计，遵循 AGPL-3.0 许可。\n\n包含 AndroidX、Bouncy Castle、JmDNS 和 SLF4J。源代码与许可声明随本版本一同提供。\n\nCarPlay 与 CarPlay 图标归 Apple Inc. 所有。50play 是一个独立项目。</string>
 
     <!-- 对话框与提示 -->
     <string name="home_dialog_hotspot_off_title">车机热点未开启</string>
-    <string name="home_dialog_hotspot_off_body">DiPlay 通过车机热点“%1$s”连接。请先在车机设置中开启热点，然后再连接。</string>
+    <string name="home_dialog_hotspot_off_body">50play 通过车机热点“%1$s”连接。请先在车机设置中开启热点，然后再连接。</string>
     <string name="home_open_car_settings">打开车机设置</string>
     <string name="home_connect">连接</string>
     <string name="home_cancel">取消</string>
@@ -94,7 +94,7 @@
     <string name="home_wireless_link">无线连接</string>
     <string name="home_apply_reconnect">应用并重新连接</string>
     <string name="home_save">保存</string>
-    <string name="home_wifi_direct_desc">DiPlay 会为 iPhone 创建专属的 Wi-Fi Direct 网络。</string>
+    <string name="home_wifi_direct_desc">50play 会为 iPhone 创建专属的 Wi-Fi Direct 网络。</string>
     <string name="home_hotspot_name_with_value">热点名称 · %1$s</string>
     <string name="home_car_hotspot_name">车机热点名称</string>
     <string name="home_hotspot_password_with_value">热点密码 · %1$s</string>
@@ -108,7 +108,7 @@
     <string name="home_open_bluetooth">打开蓝牙</string>
     <string name="home_later">稍后</string>
     <string name="home_dialog_pair_title">配对你的 iPhone</string>
-    <string name="home_dialog_pair_body">在 iPhone 上打开“设置 → 蓝牙”与车机配对，然后回到 DiPlay 选择“连接手机”。</string>
+    <string name="home_dialog_pair_body">在 iPhone 上打开“设置 → 蓝牙”与车机配对，然后回到 50play 选择“连接手机”。</string>
     <string name="home_got_it">知道了</string>
     <string name="home_dialog_choose_title">选择你的 iPhone</string>
     <string name="home_paired_device">已配对设备</string>
@@ -134,7 +134,7 @@
     <!-- 诊断报告 -->
     <string name="home_toast_no_save_location">此车机无法打开保存位置，请重试保存到 Downloads。</string>
     <string name="home_toast_no_file_picker">此车机没有可用的文件选择器来保存报告。</string>
-    <string name="home_report_header">DiPlay %1$s · 私测诊断报告</string>
+    <string name="home_report_header">50play %1$s · 私测诊断报告</string>
     <string name="home_report_android">Android %1$s / API %2$d</string>
     <string name="home_report_head_unit">车机：%1$s %2$s</string>
     <string name="home_report_connection">连接方式：%1$s</string>
@@ -150,7 +150,7 @@
     <string name="home_report_session_stopped">已停止</string>
     <string name="home_report_board">车机主板：%1$s；硬件：%2$s；系统构建：%3$s</string>
     <string name="home_report_saved_title">诊断报告已保存</string>
-    <string name="home_report_saved_path">Downloads/DiPlay/%1$s</string>
+    <string name="home_report_saved_path">Downloads/50play/%1$s</string>
     <string name="home_report_saved_custom">报告已保存到你选择的位置。</string>
     <string name="home_done">完成</string>
     <string name="home_report_failed_title">无法保存报告</string>

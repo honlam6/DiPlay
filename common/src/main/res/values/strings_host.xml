@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- CarPlayHostActivity: connection waiting panel -->
-    <string name="host_app_name">DiPlay</string>
+    <string name="host_app_name">50play</string>
     <string name="host_getting_ready">正在准备 CarPlay…</string>
     <string name="host_hint_wireless">请让 iPhone 保持在附近，并开启蓝牙和 Wi-Fi。\n如果 iPhone 询问，请允许 CarPlay。</string>
     <string name="host_hint_wired">请使用 USB 数据线并解锁 iPhone。\n如果 iPhone 询问，请允许“信任”和 CarPlay。</string>
     <string name="host_reset_wifi">重置 CarPlay Wi-Fi</string>
-    <string name="host_back_to_diplay">返回 DiPlay</string>
-    <string name="host_hint_three_finger">在 CarPlay 中三指下滑即可打开 DiPlay 设置。</string>
+    <string name="host_back_to_diplay">返回 50play</string>
+    <string name="host_hint_three_finger">在 CarPlay 中三指下滑即可打开 50play 设置。</string>
 
     <!-- Settings menu: title and category headers -->
     <string name="host_settings_title">CarPlay 设置</string>
@@ -197,7 +197,7 @@
     <string name="host_stage_transport_error">传输错误，正在重新连接</string>
     <string name="host_stage_service_running">CarPlay 服务已在运行</string>
     <string name="host_stage_session_running">CarPlay 会话已在运行</string>
-    <string name="host_stage_start_failed">无法启动 CarPlay。请返回 DiPlay 并检查应用权限。</string>
+    <string name="host_stage_start_failed">无法启动 CarPlay。请返回 50play 并检查应用权限。</string>
 
     <!-- friendlyStage(): localized display text for English status messages -->
     <string name="host_stage_iap2_tunnel_closed">无线连接通道已断开，正在重试…</string>
@@ -208,8 +208,8 @@
     <string name="host_stage_ch341_denied">CH341 USB 权限被拒绝</string>
     <string name="host_stage_mfi_usb_not_granted">未获得 MFi USB 权限；重新连接 CH341 再试</string>
     <string name="host_stage_turn_on_wifi">请在车机设置中开启 Wi-Fi 以便连接。</string>
-    <string name="host_stage_allow_location">请在车机的应用权限中允许 DiPlay 获取精确位置信息。</string>
-    <string name="host_stage_allow_nearby">请在车机的应用权限中允许 DiPlay 使用“附近设备”权限。</string>
+    <string name="host_stage_allow_location">请在车机的应用权限中允许 50play 获取精确位置信息。</string>
+    <string name="host_stage_allow_nearby">请在车机的应用权限中允许 50play 使用“附近设备”权限。</string>
     <string name="host_stage_group_failed">车机无法启动 CarPlay Wi-Fi。请检查 Wi-Fi 并关闭其他投屏应用，正在重试…</string>
     <string name="host_stage_needs_reset">上一次 Wi-Fi Direct 连接仍在运行，请先重置再连接。</string>
     <string name="host_stage_unavailable">找不到你的 iPhone。请解锁手机并检查蓝牙。</string>

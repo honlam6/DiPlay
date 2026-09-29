@@ -19,6 +19,7 @@ import android.os.IBinder
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import com.shilapi.xcertplay.AdbSelfHeal
 import com.shilapi.xcertplay.airplay.AirPlayConfig
 import com.shilapi.xcertplay.airplay.AirPlayContact
 import com.shilapi.xcertplay.airplay.AirPlayDeviceInfo
@@ -1210,7 +1211,26 @@ class CarPlayController(
     }
 
     private fun requestIphonePermission(device: UsbDevice) {
-        mainHandler.post { doRequestIphonePermission(device) }
+        // Trimmed automotive ROMs swallow the USB permission dialog, so the normal
+        // requestPermission() path can never complete there. Those units run a
+        // passwordless root adbd on loopback (see AdbSelfHeal), which lets us grant
+        // ourselves the device permission with no dialog and no computer. The attempt
+        // blocks for about a second, so it runs on the worker executor.
+        executor.execute {
+            val selfGranted = AdbSelfHeal.isAvailable(appContext) &&
+                AdbSelfHeal.grantUsb(appContext) &&
+                iphoneHost.hasPermission(device)
+            mainHandler.post {
+                if (closed) return@post
+                if (selfGranted) {
+                    debugLog("wired iPhone USB permission self-granted via loopback adb")
+                    permissionGrant.set(false)
+                    onIphonePermission(IphoneUsbHost.PermissionResult.Granted(device))
+                } else {
+                    doRequestIphonePermission(device)
+                }
+            }
+        }
     }
 
     private fun doRequestIphonePermission(device: UsbDevice) {

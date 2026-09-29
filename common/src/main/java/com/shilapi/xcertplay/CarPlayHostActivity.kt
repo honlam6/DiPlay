@@ -123,7 +123,7 @@ class CarPlayHostActivity : ComponentActivity() {
         remoteMfiServer = remoteMfiServer.trim().takeIf { it.isNotEmpty() },
         remoteMfiToken = remoteMfiToken.takeIf { it.isNotEmpty() },
         identification = Iap2IdentificationConfig(
-            name = "DiPlay",
+            name = "50play",
             modelIdentifier = normalizedModel(),
             manufacturer = normalizedManufacturer(),
             serialNumber = "DIPLAY-" + DiPlayBootstrap.deviceId(airPlayIdentity).replace(":", ""),
@@ -132,7 +132,7 @@ class CarPlayHostActivity : ComponentActivity() {
             carPlayUsbInterfaceNumber = 3,
             locationInformationEnabled = locationReportingEnabled,
         ),
-        label = "DiPlay",
+        label = "50play",
         hostName = "diplay-" + DiPlayBootstrap.deviceId(airPlayIdentity).replace(":", "").lowercase(),
         hostMac = DiPlayBootstrap.deviceId(airPlayIdentity).split(":").map { it.toInt(16).toByte() }.toByteArray(),
         wirelessBluetoothDeviceAddress = DiPlayPreferences.phoneAddress(this),
@@ -460,6 +460,19 @@ class CarPlayHostActivity : ComponentActivity() {
         manualHotspotBand = AirPlayPersistence.loadManualHotspotBand(this)
         manualHotspotChannel = AirPlayPersistence.loadManualHotspotChannel(this)
         manualHotspotSecurity = AirPlayPersistence.loadManualHotspotSecurity(this)
+        // Head units below SDK 29 force MANUAL hotspot mode (WIFI_P2P and
+        // LOCAL_ONLY_HOTSPOT are downgraded back to MANUAL on load), and
+        // CarPlayRuntimeConfig rejects an empty SSID in that mode. Seed workable
+        // defaults so a fresh install cannot crash before the user opens settings.
+        if (wirelessHotspotMode == WirelessHotspotMode.MANUAL) {
+            if (manualHotspotSsid.isBlank()) manualHotspotSsid = "50play-AP"
+            if (
+                manualHotspotSecurity != ManualHotspotSecurity.OPEN &&
+                manualHotspotPassphrase.length !in 8..63
+            ) {
+                manualHotspotPassphrase = "50play50play"
+            }
+        }
         wirelessPermissionsReady = !wirelessEnabled || hasRequiredWirelessPermissions()
     }
 
@@ -492,7 +505,15 @@ class CarPlayHostActivity : ComponentActivity() {
 
     private fun requestVpnConsent() {
         val consent = CarPlayVpnService.prepare(this)
-        if (consent == null) {
+        // Some head units ship without com.android.vpndialogs, so the platform consent
+        // activity cannot be resolved and launching it throws ActivityNotFoundException.
+        // Fall back to the VPN app op the platform has already granted for this package.
+        val resolvable = consent?.resolveActivity(packageManager) != null
+        android.util.Log.i(
+            "xcertplay-usb",
+            "vpn prepare consent=${consent?.component?.flattenToShortString() ?: "null"} resolvable=$resolvable",
+        )
+        if (consent == null || !resolvable) {
             vpnReady = true
             maybeStartCarPlay()
         } else {
@@ -619,6 +640,10 @@ class CarPlayHostActivity : ComponentActivity() {
             setPadding(dp(32), dp(32), dp(32), dp(32))
             setBackgroundColor(Color.rgb(12, 17, 27))
             isClickable = true
+            // This panel covers the whole screen while it is visible. Buttons still receive
+            // their own touches; everywhere else the touch must reach CarPlay instead of
+            // being swallowed here, otherwise the UI looks connected but cannot be tapped.
+            setOnTouchListener { view, event -> onHostTouch(view, event) }
         }
         panel.addView(ImageView(this).apply {
             setImageResource(R.drawable.ic_carplay); contentDescription = "CarPlay"
@@ -2659,7 +2684,7 @@ class CarPlayHostActivity : ComponentActivity() {
         appendLog(support.details)
         appendLog(effectiveSummary)
         return AirPlayConfig(
-            deviceName = "DiPlay",
+            deviceName = "50play",
             deviceId = DiPlayBootstrap.deviceId(airPlayIdentity),
             btMac = DiPlayBluetooth.localAddress(this) ?: DiPlayBootstrap.deviceId(airPlayIdentity),
             sourceVersion = "950.7.1",
@@ -2947,7 +2972,7 @@ class CarPlayHostActivity : ComponentActivity() {
         sink = snapshot.sink
         CarPlayBackgroundSession.store(snapshot.controller, snapshot.sink, snapshot.width, snapshot.height, this) { completion ->
             runOnUiThread {
-                shutdown(false, "DiPlay disconnect", completion)
+                shutdown(false, "50play disconnect", completion)
                 finish()
             }
         }
@@ -3045,7 +3070,7 @@ class CarPlayHostActivity : ComponentActivity() {
         controller = next
         CarPlayBackgroundSession.store(next, renderer, size.width, size.height, this) { completion ->
             runOnUiThread {
-                shutdown(terminateProcess = false, reason = "DiPlay disconnect", completion = completion)
+                shutdown(terminateProcess = false, reason = "50play disconnect", completion = completion)
                 finish()
             }
         }
@@ -3436,7 +3461,7 @@ class CarPlayHostActivity : ComponentActivity() {
         val activeLog = SessionLogFile(logFile)
         runCatching {
             activeLog.reset(
-                "DiPlay log started " +
+                "50play log started " +
                     "${SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US).format(Date())} " +
                     "pid=${Process.myPid()} path=${logFile.absolutePath}",
             )

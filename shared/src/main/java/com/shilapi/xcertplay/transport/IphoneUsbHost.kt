@@ -96,6 +96,9 @@ class IphoneUsbHost(
     fun discover(): List<UsbDevice> =
         usbManager.deviceList.values.filter { matcher.matches(it.vendorId, it.productId) }
 
+    /** Current system grant state for [device]; cheap, no side effects. */
+    fun hasPermission(device: UsbDevice): Boolean = usbManager.hasPermission(device)
+
     @Throws(IphoneUsbException::class)
     fun requestPermission(device: UsbDevice): PermissionRequest {
         requireConfiguredDevice(device)

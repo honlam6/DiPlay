@@ -23,7 +23,7 @@
     <string name="misc_crop_encode_failed">无法编码图片</string>
     <string name="misc_crop_save_failed">无法保存图片</string>
 
-    <!-- DiPlaySessionService 前台服务通知 -->
+    <!-- 50playSessionService 前台服务通知 -->
     <string name="misc_channel_carplay_connection">CarPlay 连接</string>
     <string name="misc_notification_connection_running">CarPlay 连接运行中</string>
     <string name="misc_disconnect">断开连接</string>

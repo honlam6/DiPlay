@@ -2,4 +2,8 @@
 <resources>
     <!-- CH341 USB\VID_1A86&PID_5512&REV_0304 -->
     <usb-device vendor-id="6790" product-id="21778" />
+    <!-- Any Apple device (vendor-only: PIDs vary across iPhone generations, iPads and
+         enumeration modes; the platform auto-grants USB permission on attach so we
+         never depend on head units whose SystemUI suppresses the permission dialog) -->
+    <usb-device vendor-id="1452" />
 </resources>

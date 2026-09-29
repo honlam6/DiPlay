@@ -18,6 +18,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -74,6 +75,27 @@ class DiPlayActivity : ComponentActivity() {
         setupError = runCatching { DiPlayBootstrap.ensure(this) }.exceptionOrNull()?.let {
             getString(R.string.home_error_local_setup)
         }
+        // Best-effort self-healing for ROMs that swallow permission dialogs (see
+        // docs/SGMW-LINGOS-COMPAT.md). Rooted units go through su; trimmed units
+        // (LingOS & co) expose a passwordless root adbd on loopback instead. Both
+        // are no-ops on stock devices and must never block startup.
+        Thread {
+            val applied = RootCompat.autoFix(applicationContext)
+                .ifEmpty { AdbSelfHeal.autoFix(applicationContext) }
+            if (applied.isNotEmpty()) Log.i("50play-root", "self-heal applied: $applied")
+            // AOT pass, keyed to the install stamp: re-running it after every (re)install is what
+            // keeps the first launch from being interpreted on this class of SoC.
+            val prefs = getSharedPreferences("50play_selfheal", MODE_PRIVATE)
+            val stamp = runCatching {
+                packageManager.getPackageInfo(packageName, 0).lastUpdateTime.toString()
+            }.getOrNull()
+            if (stamp != null && prefs.getString("aot_stamp", null) != stamp &&
+                AdbSelfHeal.isAvailable(applicationContext) &&
+                AdbSelfHeal.aotCompile(applicationContext)
+            ) {
+                prefs.edit().putString("aot_stamp", stamp).apply()
+            }
+        }.start()
         page = savedInstanceState?.getString("page") ?: intent.getStringExtra("page") ?: "home"
         render()
         handleWirelessRecovery()
@@ -533,7 +555,7 @@ class DiPlayActivity : ComponentActivity() {
         }
         connectButton?.isEnabled = setupError == null
     }
-    private fun reportFileName() = "DiPlay-${SimpleDateFormat("yyyyMMdd-HHmmss-SSS", Locale.US).format(Date())}.txt"
+    private fun reportFileName() = "50play-${SimpleDateFormat("yyyyMMdd-HHmmss-SSS", Locale.US).format(Date())}.txt"
 
     private fun chooseReportDestination() {
         // Some head units omit or disable DocumentsUI. Launch itself can throw, before

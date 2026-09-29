@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- DiPlayActivity home UI (English originals; default values/strings_home.xml = Simplified Chinese) -->
+    <!-- 50playActivity home UI (English originals; default values/strings_home.xml = Simplified Chinese) -->
 
     <!-- Permissions and init -->
     <string name="home_permission_nearby_devices">Nearby devices</string>
-    <string name="home_permission_nearby_devices_body">Allow Nearby devices so DiPlay can connect to your paired iPhone.</string>
-    <string name="home_error_local_setup">Local setup could not finish. Reinstall the complete DiPlay beta APK and try again.</string>
+    <string name="home_permission_nearby_devices_body">Allow Nearby devices so 50play can connect to your paired iPhone.</string>
+    <string name="home_error_local_setup">Local setup could not finish. Reinstall the complete 50play beta APK and try again.</string>
 
     <!-- Header -->
     <string name="home_cd_carplay">CarPlay</string>
-    <string name="home_brand_doplay">DiPlay</string>
+    <string name="home_brand_doplay">50play</string>
     <string name="home_car_home">Car home</string>
     <string name="home_back">Back</string>
 
@@ -28,14 +28,14 @@
     <string name="home_connect_usb">Connect with USB</string>
     <string name="home_usb_hint">Plug your iPhone into a USB data port.\nAllow CarPlay when your iPhone asks.</string>
     <string name="home_settings">Settings</string>
-    <string name="home_settings_teaser">Make DiPlay feel right for your car.</string>
+    <string name="home_settings_teaser">Make 50play feel right for your car.</string>
     <string name="home_public_preview_badge">PUBLIC PREVIEW  ·  %1$s</string>
 
     <!-- Settings -->
     <string name="home_settings_title">Your drive, your way.</string>
     <string name="home_settings_apply_note">Apply reconnects CarPlay for size, resolution, music buffer and frame rate. Other changes apply to your next connection.</string>
     <string name="home_section_auto_connect">Automatic connection</string>
-    <string name="home_toggle_connect_on_open">Connect when DiPlay opens</string>
+    <string name="home_toggle_connect_on_open">Connect when 50play opens</string>
     <string name="home_toggle_connect_on_open_desc">Use your last connection type and selected iPhone.</string>
     <string name="home_toggle_open_after_start">Open after the car starts</string>
     <string name="home_toggle_open_after_start_desc">Availability depends on your head unit’s startup settings.</string>
@@ -68,10 +68,10 @@
     <string name="home_bluetooth_settings">Bluetooth settings</string>
     <string name="home_wireless_help">Wireless connection help</string>
     <string name="home_section_about">About and diagnostics</string>
-    <string name="home_about_doplay">About DiPlay</string>
+    <string name="home_about_doplay">About 50play</string>
     <string name="home_saving_report">Saving report…</string>
     <string name="home_save_report">Save diagnostic report</string>
-    <string name="home_report_dest_downloads">"Reports save to Downloads/DiPlay. "</string>
+    <string name="home_report_dest_downloads">"Reports save to Downloads/50play. "</string>
     <string name="home_report_dest_choose">"Choose where to save your report. "</string>
     <string name="home_report_privacy">Nothing is sent automatically. Protocol payloads and credentials are excluded.</string>
 
@@ -80,11 +80,11 @@
     <string name="home_public_preview">Public preview · %1$s</string>
     <string name="home_about_intro">An independent CarPlay receiver for Android head units. Wired and wireless connections run on the head unit, with local authentication. A standard iPhone can connect without a jailbreak, Mac, dongle or sign-in.\n\nThis preview uses an experimental accessory identity. Compatibility with every iPhone and head unit is still being tested. It is not an Apple-certified product.</string>
     <string name="home_about_opensource_title">Made possible by open source</string>
-    <string name="home_about_opensource">Receiver based on xcertplay, licensed under GPL-3.0. DiPlay’s interface follows DiAuto’s design, licensed under AGPL-3.0.\n\nIncludes AndroidX, Bouncy Castle, JmDNS and SLF4J. Source and license notices accompany this release.\n\nCarPlay and the CarPlay icon belong to Apple Inc. DiPlay is an independent project.</string>
+    <string name="home_about_opensource">Receiver based on xcertplay, licensed under GPL-3.0. 50play’s interface follows DiAuto’s design, licensed under AGPL-3.0.\n\nIncludes AndroidX, Bouncy Castle, JmDNS and SLF4J. Source and license notices accompany this release.\n\nCarPlay and the CarPlay icon belong to Apple Inc. 50play is an independent project.</string>
 
     <!-- Dialogs and toasts -->
     <string name="home_dialog_hotspot_off_title">Car hotspot is off</string>
-    <string name="home_dialog_hotspot_off_body">DiPlay connects through the car hotspot “%1$s”. Turn it on in the car settings, then connect.</string>
+    <string name="home_dialog_hotspot_off_body">50play connects through the car hotspot “%1$s”. Turn it on in the car settings, then connect.</string>
     <string name="home_open_car_settings">Open car settings</string>
     <string name="home_connect">Connect</string>
     <string name="home_cancel">Cancel</string>
@@ -94,7 +94,7 @@
     <string name="home_wireless_link">Wireless link</string>
     <string name="home_apply_reconnect">Apply and reconnect</string>
     <string name="home_save">Save</string>
-    <string name="home_wifi_direct_desc">DiPlay creates its own Wi-Fi Direct network for the iPhone.</string>
+    <string name="home_wifi_direct_desc">50play creates its own Wi-Fi Direct network for the iPhone.</string>
     <string name="home_hotspot_name_with_value">Hotspot name · %1$s</string>
     <string name="home_car_hotspot_name">Car hotspot name</string>
     <string name="home_hotspot_password_with_value">Hotspot password · %1$s</string>
@@ -108,7 +108,7 @@
     <string name="home_open_bluetooth">Open Bluetooth</string>
     <string name="home_later">Later</string>
     <string name="home_dialog_pair_title">Pair your iPhone</string>
-    <string name="home_dialog_pair_body">On your iPhone, open Settings → Bluetooth and pair with the car. Then return to DiPlay and choose Connect phone.</string>
+    <string name="home_dialog_pair_body">On your iPhone, open Settings → Bluetooth and pair with the car. Then return to 50play and choose Connect phone.</string>
     <string name="home_got_it">Got it</string>
     <string name="home_dialog_choose_title">Choose your iPhone</string>
     <string name="home_paired_device">Paired device</string>
@@ -134,7 +134,7 @@
     <!-- Diagnostic report -->
     <string name="home_toast_no_save_location">This head unit could not open a save location. Please try saving to Downloads again.</string>
     <string name="home_toast_no_file_picker">This head unit has no available file picker to save the report.</string>
-    <string name="home_report_header">DiPlay %1$s · private beta diagnostic report</string>
+    <string name="home_report_header">50play %1$s · private beta diagnostic report</string>
     <string name="home_report_android">Android %1$s / API %2$d</string>
     <string name="home_report_head_unit">Head unit: %1$s %2$s</string>
     <string name="home_report_connection">Connection: %1$s</string>
@@ -150,7 +150,7 @@
     <string name="home_report_session_stopped">stopped</string>
     <string name="home_report_board">Head-unit board: %1$s; hardware: %2$s; build: %3$s</string>
     <string name="home_report_saved_title">Diagnostic report saved</string>
-    <string name="home_report_saved_path">Downloads/DiPlay/%1$s</string>
+    <string name="home_report_saved_path">Downloads/50play/%1$s</string>
     <string name="home_report_saved_custom">Your report was saved to the selected location.</string>
     <string name="home_done">Done</string>
     <string name="home_report_failed_title">Could not save the report</string>
